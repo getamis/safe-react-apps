@@ -13,7 +13,7 @@ const StyledSelect = styled(SelectMUI)`
   background-color: #e8e7e6;
   border-radius: 5px;
   height: 56px;
-  width: 140px;
+  width: ${({ size }: Props) => getSize(size)};;
 
   .MuiSelect-select {
     display: flex;
@@ -21,13 +21,26 @@ const StyledSelect = styled(SelectMUI)`
     padding-left: 15px;
   }
 `;
+type Size = "md" | "lg";
+
+const getSize = (size?: Size) => {
+  switch (size) {
+    case "lg":
+      return "300px";
+    default:
+      return "140px";
+  }
+};
 
 type Props = {
   items: Array<{ id: string; label: string; iconUrl?: string }>;
   activeItemId: string;
   onItemClick: (id: string) => void;
   id?: string;
+  size?: Size;
 };
+
+
 
 function Select({ items, activeItemId, onItemClick, id }: Props) {
   const [open, setOpen] = React.useState(false);
