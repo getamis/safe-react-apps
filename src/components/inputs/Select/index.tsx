@@ -4,6 +4,16 @@ import FormControl from "@material-ui/core/FormControl";
 import SelectMUI from "@material-ui/core/Select";
 import styled from "styled-components";
 
+type Size = "md" | "lg";
+
+type Props = {
+  items: Array<{ id: string; label: string; iconUrl?: string }>;
+  activeItemId: string;
+  onItemClick: (id: string) => void;
+  id?: string;
+  size?: Size;
+};
+
 const IconImg = styled.img`
   width: 20px;
   margin-right: 10px;
@@ -13,7 +23,7 @@ const StyledSelect = styled(SelectMUI)`
   background-color: #e8e7e6;
   border-radius: 5px;
   height: 56px;
-  width: ${({ size }: Props) => getSize(size)};;
+  width: ${({ size }: any) => getSize(size)};
 
   .MuiSelect-select {
     display: flex;
@@ -21,7 +31,6 @@ const StyledSelect = styled(SelectMUI)`
     padding-left: 15px;
   }
 `;
-type Size = "md" | "lg";
 
 const getSize = (size?: Size) => {
   switch (size) {
@@ -32,17 +41,7 @@ const getSize = (size?: Size) => {
   }
 };
 
-type Props = {
-  items: Array<{ id: string; label: string; iconUrl?: string }>;
-  activeItemId: string;
-  onItemClick: (id: string) => void;
-  id?: string;
-  size?: Size;
-};
-
-
-
-function Select({ items, activeItemId, onItemClick, id }: Props) {
+function Select({ items, activeItemId, onItemClick, id, ...rest }: Props) {
   const [open, setOpen] = React.useState(false);
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
@@ -68,6 +67,7 @@ function Select({ items, activeItemId, onItemClick, id }: Props) {
           onOpen={handleOpen}
           value={activeItemId}
           onChange={handleChange}
+          {...rest}
         >
           {items.map(i => {
             return (

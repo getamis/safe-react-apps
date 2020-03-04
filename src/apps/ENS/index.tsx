@@ -10,42 +10,37 @@ import {
 } from "../../components";
 import { ListItem } from "@material-ui/core";
 
-
 const addressList = [
-  { id: "sub1", label: "sub1.myname.eth"  },
+  { id: "sub1", label: "sub1.myname.eth" },
   { id: "sub2", label: "sub2.myname.eth" },
-  { id: "sub3", label: "sub3.myname.eth" },
+  { id: "sub3", label: "sub3.myname.eth" }
 ];
-
 
 function ENS() {
   return (
-    <WidgetWrapper>
-      <Title>ENS Manager</Title>
-      <Text size="lg">My Company Safe</Text>
-      <Text>0x2s...h1D8</Text>    
-      <Select size="lg"
+    <div>
+      <WidgetWrapper>
+        <Title>ENS Manager</Title>
+        <Text size="lg">My Company Safe</Text>
+        <Text>0x2s...h1D8</Text>
+        <Select
+          size="lg"
           items={addressList}
           activeItemId="sub1"
-          onItemClick={()=>{}}
+          onItemClick={() => {}}
         />
-
-    </WidgetWrapper>
-
-
-    // Second screen 
+      </WidgetWrapper>
+      // Second screen
       <Title>ENS Manager</Title>
       <Text size="lg">myname.eth</Text>
-      <Text>0x2s...h1D8</Text>    
-
+      <Text>0x2s...h1D8</Text>
       <Text size="lg">Subdomain</Text>
-      <List>
+      {/* <List>
         <ListItem>sub1.myname.eth</ListItem>
         <ListItem>sub2.myname.eth</ListItem>
         <ListItem>sub3.myname.eth</ListItem>
-      </List>
-
-
+      </List> */}
+    </div>
   );
 }
 
